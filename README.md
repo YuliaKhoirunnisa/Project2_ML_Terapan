@@ -148,11 +148,13 @@ Untuk mengevaluasi performa model Content-Based Filtering, digunakan metrik **Pr
 - **NDCG@10** mengukur relevansi rekomendasi dengan mempertimbangkan urutan (ranking) item relevan, sehingga lebih adil untuk rekomendasi berbasis konten.
 
 **Formula Precision@K**:
+
 $$
 \text{Precision@K} = \frac{|\text{Recommended Items} \cap \text{Relevant Items}|}{K}
 $$
 
 **Formula NDCG@K**:
+
 $$
 \text{DCG@K} = \sum_{i=1}^{K} \frac{\text{rel}_i}{\log_2(i + 1)}
 $$
