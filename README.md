@@ -148,17 +148,17 @@ Untuk mengevaluasi performa model Content-Based Filtering, digunakan metrik **Pr
 - **NDCG@10** mengukur relevansi rekomendasi dengan mempertimbangkan urutan (ranking) item relevan, sehingga lebih adil untuk rekomendasi berbasis konten.
 
 **Formula Precision@K**:
-\[
+$$
 \text{Precision@K} = \frac{|\text{Recommended Items} \cap \text{Relevant Items}|}{K}
-\]
+$$
 
 **Formula NDCG@K**:
-\[
+$$
 \text{DCG@K} = \sum_{i=1}^{K} \frac{\text{rel}_i}{\log_2(i + 1)}
-\]
-\[
+$$
+$$
 \text{NDCG@K} = \frac{\text{DCG@K}}{\text{IDCG@K}}
-\]
+$$
 
 **Hasil Evaluasi**:
 - **Precision@10** = 0.00
@@ -175,9 +175,9 @@ Metrik evaluasi yang digunakan untuk mengukur kinerja model _Collaborative Filte
 **Formula dan Cara Kerja Metrik**:
 RMSE dihitung dengan mengambil akar kuadrat dari rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual. Formulanya adalah sebagai berikut:
 
-\[
+$$
 RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
-\]
+$$
 
 Di mana:
 - \(n\) adalah jumlah total data (rating) yang diuji.
