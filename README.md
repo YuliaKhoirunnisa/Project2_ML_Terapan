@@ -106,7 +106,14 @@ content_data = data.drop_duplicates(subset=['Book-Title']).copy()
 content_data['combined'] = content_data['Book-Title'] + ' ' + content_data['Book-Author'] + ' ' + content_data['Publisher']
 content_data['combined'] = content_data['combined'].fillna('')
 ```
-5. **Persiapan untuk Collaborative Filtering:**
+5. **Vektorisasi Fitur (TF-IDF):**
+   - **Teknik:** Tahap ini merupakan bagian dari persiapan data untuk model _Content-Based Filtering_.  Fitur teks gabungan (`combined`) diubah menjadi representasi numerik menggunakan **Term Frequency-Inverse Document Frequency (TF-IDF)**.
+   - **Alasan:** TF-IDF digunakan untuk mengukur seberapa penting sebuah kata dalam deskripsi sebuah buku relatif terhadap semua buku dalam dataset. Ini membantu model untuk memberikan bobot lebih pada kata-kata yang unik dan informatif. Hasil dari proses ini adalah sebuah matriks (`tfidf_matrix`) yang siap digunakan untuk menghitung kemiripan antar buku.
+```
+tfidf = TfidfVectorizer(stop_words='english')
+tfidf_matrix = tfidf.fit_transform(content_data['combined'])
+```
+6. **Persiapan untuk Collaborative Filtering:**
    - Data rating dibagi menjadi 80% data latih dan 20% data uji. Ini penting untuk melatih model pada satu set data dan mengevaluasinya pada set data lain yang belum pernah dilihatnya.
    - Dataset diubah ke dalam format yang dapat dibaca oleh library `surprise` menggunakan `Reader` dan `Dataset.load_from_df()`.
 Tahapan ini sangat penting karena kualitas data yang bersih dan terstruktur akan sangat menentukan performa model yang akan dibangun.
@@ -114,7 +121,7 @@ Tahapan ini sangat penting karena kualitas data yang bersih dan terstruktur akan
 ## Modeling
 ### **1. Content-Based Filtering**
 Model ini dibuat untuk merekomendasikan buku berdasarkan kemiripan kontennya. 
-- **Proses:** Fitur gabungan (`combined`) dari setiap buku diubah menjadi vektor TF-IDF. Matriks TF-IDF ini merepresentasikan pentingnya setiap kata dalam dokumen (buku). Selanjutnya, model `NearestNeighbors` dilatih pada matriks ini untuk menemukan buku-buku dengan vektor terdekat (kemiripan kosinus tertinggi).
+- **Proses:** Model ini menggunakan matriks TF-IDF yang telah dibuat pada tahap **Data Preparation**. Algoritma `NearestNeighbors` kemudian digunakan untuk menghitung kemiripan kosinus (`cosine similarity`) antara semua buku berdasarkan matriks tersebut. Saat diberi judul buku, sistem akan menemukan buku-buku lain dengan vektor yang paling mirip (tetangga terdekat) dan merekomendasikannya kepada pengguna.
 - **Kelebihan:**  Tidak memerlukan data rating dari pengguna lain (mengatasi masalah _cold_ start untuk item baru) dan dapat memberikan rekomendasi untuk item yang spesifik/kurang populer.
 - **Kekurangan:**  Terbatas pada fitur yang ada (tidak dapat menemukan item baru yang tak terduga atau _serendipity_) dan bisa menjadi terlalu spesifik (jika pengguna menyukai satu genre, ia hanya akan direkomendasikan genre itu saja).
 
@@ -153,6 +160,6 @@ RMSE memberikan bobot yang lebih besar pada kesalahan yang lebih besar karena ad
 
 Model SVD dievaluasi pada dua skenario:
 
-1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6424.**
-Test Set: Saat diuji pada data uji (20% dari data), model menghasilkan **RMSE sebesar 1.2663.**
-Nilai RMSE pada test set yang lebih rendah (1.2663) menunjukkan bahwa model memiliki performa yang baik dalam memprediksi rating pada data yang belum pernah dilihat sebelumnya. Nilai ini mengindikasikan bahwa rata-rata kesalahan prediksi model dari rating sebenarnya adalah sekitar 1.27 poin pada skala rating 1-10.
+1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6417.**
+Test Set: Saat diuji pada data uji (20% dari data), model menghasilkan **RMSE sebesar 1.2641.**
+Nilai RMSE pada test set yang lebih rendah (1.2641) menunjukkan bahwa model memiliki performa yang baik dalam memprediksi rating pada data yang belum pernah dilihat sebelumnya. Nilai ini mengindikasikan bahwa rata-rata kesalahan prediksi model dari rating sebenarnya adalah sekitar 1.27 poin pada skala rating 1-10.
