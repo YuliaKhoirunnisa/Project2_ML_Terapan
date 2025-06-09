@@ -85,11 +85,28 @@ _Insight_: Sebaran geografis pengguna ini mengindikasikan bahwa koleksi buku dan
 
 # Data Preparation
 Tahapan data preparation dilakukan untuk membersihkan dan menyusun data agar siap digunakan untuk modeling. Langkah-langkah yang dilakukan adalah sebagai berikut:
-1. Pembersihan Data Awal:
+1. **Pembersihan Data Awal:**
    - Pada data `books`, baris yang semua nilainya kosong (`NaN`) dihapus.
    - Pada data `ratings`, rating bernilai 0 (menandakan rating implisit) dihapus karena untuk model collaborative filtering ini hanya rating eksplisit (1-10) yang relevan.
    - Pada data `users`, data pengguna difilter untuk menjaga usia yang logis, yaitu antara 5 hingga 100 tahun.
-2. Penggabungan Data: DataFrame `ratings` dan `books` digabungkan (merge) berdasarkan kolom `ISBN`. Ini bertujuan agar setiap rating terhubung dengan informasi detail bukunya.
+2. **Penggabungan Data:** DataFrame `ratings` dan `books` digabungkan (merge) berdasarkan kolom `ISBN`. Ini bertujuan agar setiap rating terhubung dengan informasi detail bukunya.
 ```
 data = ratings.merge(books, on='ISBN')
 ```
+3. **Seleksi Fitur:** Hanya kolom-kolom yang relevan untuk kedua model yang dipilih, yaitu `User-ID`, `Book-Title`, `Book-Author`, `Publisher`, dan `Book-Rating`. Ini dilakukan untuk menyederhanakan dataset dan mengurangi penggunaan memori.
+```
+data = data[['User-ID', 'Book-Title', 'Book-Author', 'Publisher', 'Book-Rating']]
+```
+4. **Persiapan untuk Content-Based Filtering:** 
+   - Duplikasi data berdasarkan `Book-Title` dihapus untuk membuat matriks kemiripan yang unik per buku.
+   - Fitur teks (`Book-Title`, `Book-Author`, `Publisher`) digabungkan menjadi satu kolom `combined`. Ini dilakukan agar `TfidfVectorizer` dapat memproses semua informasi konten secara bersamaan.
+   - Nilai `NaN` yang mungkin ada di kolom `combined` diisi dengan string kosong untuk menghindari error pada saat vektorisasi. <!-- end list -->
+```
+content_data = data.drop_duplicates(subset=['Book-Title']).copy()
+content_data['combined'] = content_data['Book-Title'] + ' ' + content_data['Book-Author'] + ' ' + content_data['Publisher']
+content_data['combined'] = content_data['combined'].fillna('')
+```
+5. **Persiapan untuk Collaborative Filtering:**
+   - Data rating dibagi menjadi 80% data latih dan 20% data uji. Ini penting untuk melatih model pada satu set data dan mengevaluasinya pada set data lain yang belum pernah dilihatnya.
+   - Dataset diubah ke dalam format yang dapat dibaca oleh library `surprise` menggunakan `Reader` dan `Dataset.load_from_df()`.
+Tahapan ini sangat penting karena kualitas data yang bersih dan terstruktur akan sangat menentukan performa model yang akan dibangun.
