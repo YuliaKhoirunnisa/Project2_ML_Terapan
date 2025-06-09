@@ -1,6 +1,6 @@
 # Laporan Proyek Machine Learning - Yulia Khoirunnisa
 ## Project Overview
-![Uploading buku.png…]()
+![buku](https://github.com/user-attachments/assets/c265fa7e-20dd-43fa-88f3-f2aa6991e253)
 
 Sistem rekomendasi merupakan salah satu penerapan *machine learning* yang paling populer dan banyak ditemui dalam kehidupan sehari-hari.  Mulai dari platform *e-commerce*, layanan *streaming* musik dan film, hingga portal berita, sistem ini membantu pengguna menemukan item yang relevan di antara jutaan pilihan yang tersedia. Dalam industri perbukuan, baik toko buku daring maupun perpustakaan digital, sistem rekomendasi memegang peranan krusial dalam meningkatkan pengalaman pengguna. Dengan merekomendasikan buku yang sesuai dengan selera atau kebutuhan, pengguna dapat lebih mudah menemukan bacaan baru yang menarik, yang pada akhirnya dapat meningkatkan keterlibatan (*engagement*) dan loyalitas pengguna. 
 
