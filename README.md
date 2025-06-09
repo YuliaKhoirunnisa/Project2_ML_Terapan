@@ -123,3 +123,12 @@ Berikut adalah hasil 10 rekomendasi teratas untuk buku "Harry Potter and the Sor
 ![tpo N](https://github.com/user-attachments/assets/90e9711f-2655-40ac-bb7e-4ea135675643)
 
 ### 2. Collaborative Filtering
+Model ini dibuat untuk merekomendasikan buku berdasarkan preferensi pengguna lain yang serupa. 
+- **Proses:** Algoritma SVD digunakan untuk memfaktorkan matriks interaksi pengguna-item (user-item) menjadi matriks faktor laten pengguna dan item. Model ini dilatih pada `trainset` untuk mempelajari preferensi pengguna. Setelah itu, model digunakan untuk memprediksi rating pada `testset` dan menghasilkan rekomendasi.
+- **Kelebihan:**  Mampu menghasilkan rekomendasi yang tak terduga (_serendipitous_) karena tidak bergantung pada konten item, serta dapat menyesuaikan diri dengan selera pengguna seiring waktu.
+- **Kekurangan:**  Mengalami masalah _cold start_ (tidak bisa memberikan rekomendasi untuk pengguna atau item baru yang belum memiliki data rating) dan membutuhkan data rating yang banyak untuk performa yang baik.
+
+**Hasil Rekomendasi (Top-N Recommendation)** 
+Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi ratingny
+![tpo N](https://github.com/user-attachments/assets/8b1644cf-014c-4027-874a-b94a1bd0a995)
+a:
