@@ -131,6 +131,7 @@ Model ini dibuat untuk merekomendasikan buku berdasarkan preferensi pengguna lai
 
 **Hasil Rekomendasi (Top-N Recommendation)** 
 Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi ratingnya:
+
 ![tpo N](https://github.com/user-attachments/assets/8b1644cf-014c-4027-874a-b94a1bd0a995)
 
 ## Evaluasi
