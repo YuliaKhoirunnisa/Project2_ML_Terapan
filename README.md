@@ -1,7 +1,7 @@
 # Laporan Proyek Machine Learning - Yulia Khoirunnisa
 ## Project Overview
 ![book](https://github.com/user-attachments/assets/f511329e-fad5-406a-908a-3f18bb388b11)
-
+### Latar Belakang
 Sistem rekomendasi merupakan salah satu penerapan *machine learning* yang paling populer dan banyak ditemui dalam kehidupan sehari-hari.  Mulai dari platform *e-commerce*, layanan *streaming* musik dan film, hingga portal berita, sistem ini membantu pengguna menemukan item yang relevan di antara jutaan pilihan yang tersedia. Dalam industri perbukuan, baik toko buku daring maupun perpustakaan digital, sistem rekomendasi memegang peranan krusial dalam meningkatkan pengalaman pengguna. Dengan merekomendasikan buku yang sesuai dengan selera atau kebutuhan, pengguna dapat lebih mudah menemukan bacaan baru yang menarik, yang pada akhirnya dapat meningkatkan keterlibatan (*engagement*) dan loyalitas pengguna. 
 
 Proyek ini bertujuan untuk membangun sebuah sistem rekomendasi buku menggunakan dataset publik "Book-Crossing: User review ratings". Pentingnya proyek ini adalah untuk menerapkan dan membandingkan dua pendekatan utama dalam sistem rekomendasi, yaitu *Content-Based Filtering* dan *Collaborative Filtering*.  Dengan memahami dan mengimplementasikan kedua pendekatan ini, kita dapat melihat bagaimana masing-masing metode bekerja dalam memberikan rekomendasi yang dipersonalisasi serta menganalisis kelebihan dan kekurangannya dalam konteks data buku.
@@ -11,25 +11,24 @@ Proyek ini bertujuan untuk membangun sebuah sistem rekomendasi buku menggunakan 
 * Aggarwal, C. C. (2016). *Recommender Systems: The Textbook*. Springer. [https://link.springer.com/book/10.1007/978-3-319-29659-3](https://link.springer.com/book/10.1007/978-3-319-29659-3)
 
 ## Business Understanding
-
-### [cite_start]Problem Statements 
+### Problem Statements 
 Berdasarkan latar belakang yang telah diuraikan, masalah utama yang ingin diselesaikan adalah:
 * Bagaimana cara memberikan rekomendasi buku kepada pengguna berdasarkan kemiripan konten (judul, penulis, penerbit) dari buku yang pernah mereka sukai?
 * Bagaimana cara menyajikan rekomendasi buku yang dipersonalisasi untuk seorang pengguna berdasarkan pola rating dari pengguna lain yang memiliki selera serupa?
 
-### [cite_start]Goals 
+### Goals 
 Tujuan dari proyek ini adalah untuk menjawab pernyataan masalah tersebut, yaitu:
 * Membangun model sistem rekomendasi menggunakan pendekatan *Content-Based Filtering* yang mampu menemukan buku-buku serupa berdasarkan atributnya.
 * Mengembangkan model sistem rekomendasi menggunakan pendekatan *Collaborative Filtering* untuk memberikan daftar Top-N rekomendasi buku kepada pengguna.
 * Mengevaluasi kinerja model *Collaborative Filtering* menggunakan metrik yang sesuai.
 
-### [cite_start]Solution Approach 
+### Solution Approach 
 Untuk mencapai tujuan yang telah ditentukan, diusulkan dua pendekatan solusi sebagai berikut:
-1.  [cite_start]**Content-Based Filtering**: Pendekatan ini akan merekomendasikan buku dengan cara menganalisis kemiripan fitur atau konten dari buku itu sendiri, seperti judul, penulis, dan penerbit.  Fitur-fitur teks ini akan digabungkan dan diubah menjadi representasi numerik menggunakan `TfidfVectorizer`. Kemudian, kemiripan antar buku dihitung menggunakan *Cosine Similarity* yang diimplementasikan melalui `NearestNeighbors` untuk menemukan buku-buku yang paling mirip.
-2.  [cite_start]**Collaborative Filtering**: Pendekatan ini akan memberikan rekomendasi berdasarkan data interaksi (rating) dari semua pengguna.  Algoritma yang digunakan adalah *Singular Value Decomposition* (SVD) dari library `scikit-surprise`. Model ini akan mempelajari pola tersembunyi (*latent factors*) dari rating pengguna untuk memprediksi rating pada buku yang belum pernah dibaca oleh seorang pengguna, lalu merekomendasikan buku dengan prediksi rating tertinggi.
+1. **Content-Based Filtering**: Pendekatan ini akan merekomendasikan buku dengan cara menganalisis kemiripan fitur atau konten dari buku itu sendiri, seperti judul, penulis, dan penerbit. Fitur-fitur teks ini akan digabungkan dan diubah menjadi representasi numerik menggunakan `TfidfVectorizer`. Kemudian, kemiripan antar buku dihitung menggunakan *Cosine Similarity* yang diimplementasikan melalui `NearestNeighbors` untuk menemukan buku-buku yang paling mirip.
+2. **Collaborative Filtering**: Pendekatan ini akan memberikan rekomendasi berdasarkan data interaksi (rating) dari semua pengguna.  Algoritma yang digunakan adalah *Singular Value Decomposition* (SVD) dari library `scikit-surprise`. Model ini akan mempelajari pola tersembunyi (*latent factors*) dari rating pengguna untuk memprediksi rating pada buku yang belum pernah dibaca oleh seorang pengguna, lalu merekomendasikan buku dengan prediksi rating tertinggi.
 
 ## Data Understanding
-[cite_start]Dataset yang digunakan dalam proyek ini adalah **Book-Crossing Dataset** yang terdiri dari tiga file: `BX-Books.csv`, `BX-Book-Ratings.csv`, dan `BX-Users.csv`.  Dataset ini berisi informasi mengenai buku, rating yang diberikan oleh pengguna, dan data demografis pengguna.
+Dataset yang digunakan dalam proyek ini adalah **Book-Crossing Dataset** dari [Kaggle](https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset) yang terdiri dari tiga file: `BX-Books.csv`, `BX-Book-Ratings.csv`, dan `BX-Users.csv`.  Dataset ini berisi informasi mengenai buku, rating yang diberikan oleh pengguna, dan data demografis pengguna.
 
 Setelah melalui proses pembersihan data, jumlah data yang digunakan adalah sebagai berikut:
 * **Books**: 270,494 records
