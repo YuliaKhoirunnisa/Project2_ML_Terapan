@@ -83,7 +83,7 @@ Grafik menunjukkan bahwa pengguna terbanyak berasal dari kota-kota besar di nega
 
 _Insight_: Sebaran geografis pengguna ini mengindikasikan bahwa koleksi buku dan preferensi rating kemungkinan besar didominasi oleh buku-buku berbahasa Inggris.
 
-# Data Preparation
+## Data Preparation
 Tahapan data preparation dilakukan untuk membersihkan dan menyusun data agar siap digunakan untuk modeling. Langkah-langkah yang dilakukan adalah sebagai berikut:
 1. **Pembersihan Data Awal:**
    - Pada data `books`, baris yang semua nilainya kosong (`NaN`) dihapus.
@@ -111,7 +111,7 @@ content_data['combined'] = content_data['combined'].fillna('')
    - Dataset diubah ke dalam format yang dapat dibaca oleh library `surprise` menggunakan `Reader` dan `Dataset.load_from_df()`.
 Tahapan ini sangat penting karena kualitas data yang bersih dan terstruktur akan sangat menentukan performa model yang akan dibangun.
 
-# Modeling
+## Modeling
 ### **1. Content-Based Filtering**
 Model ini dibuat untuk merekomendasikan buku berdasarkan kemiripan kontennya. 
 - **Proses:** Fitur gabungan (`combined`) dari setiap buku diubah menjadi vektor TF-IDF. Matriks TF-IDF ini merepresentasikan pentingnya setiap kata dalam dokumen (buku). Selanjutnya, model `NearestNeighbors` dilatih pada matriks ini untuk menemukan buku-buku dengan vektor terdekat (kemiripan kosinus tertinggi).
@@ -129,6 +129,26 @@ Model ini dibuat untuk merekomendasikan buku berdasarkan preferensi pengguna lai
 - **Kekurangan:**  Mengalami masalah _cold start_ (tidak bisa memberikan rekomendasi untuk pengguna atau item baru yang belum memiliki data rating) dan membutuhkan data rating yang banyak untuk performa yang baik.
 
 **Hasil Rekomendasi (Top-N Recommendation)** 
-Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi ratingny
+Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi ratingnya:
 ![tpo N](https://github.com/user-attachments/assets/8b1644cf-014c-4027-874a-b94a1bd0a995)
-a:
+
+## Evaluasi
+Metrik evaluasi yang digunakan untuk mengukur kinerja model _Collaborative Filtering_ adalah **Root Mean Squared Error (RMSE)**. Metrik ini dipilih karena sesuai dengan konteks masalah prediksi rating, di mana tujuannya adalah meminimalkan kesalahan antara rating yang diprediksi oleh model dan rating aktual yang diberikan oleh pengguna. 
+
+**Formula dan Cara Kerja Metrik**
+RMSE dihitung dengan mengambil akar kuadrat dari rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual. Formulanya adalah sebagai berikut:
+$$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
+Di mana:
+
+- $n$ adalah jumlah total data (rating) yang diuji.
+- $y_i$ adalah rating aktual yang diberikan oleh pengguna.
+- $\hat{y}_i$ adalah rating yang diprediksi oleh model.
+
+RMSE memberikan bobot yang lebih besar pada kesalahan yang lebih besar karena adanya proses pengkuadratan. Nilai RMSE yang lebih rendah menunjukkan bahwa model memiliki tingkat kesalahan prediksi yang lebih kecil, sehingga performanya dianggap lebih baik.
+
+**Hasil Evaluasi**
+Model SVD dievaluasi pada dua skenario:
+
+1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6424.**
+Test Set: Saat diuji pada data uji (20% dari data), model menghasilkan **RMSE sebesar 1.2663.**
+Nilai RMSE pada test set yang lebih rendah (1.2663) menunjukkan bahwa model memiliki performa yang baik dalam memprediksi rating pada data yang belum pernah dilihat sebelumnya. Nilai ini mengindikasikan bahwa rata-rata kesalahan prediksi model dari rating sebenarnya adalah sekitar 1.27 poin pada skala rating 1-10.
