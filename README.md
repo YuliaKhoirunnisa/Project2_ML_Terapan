@@ -41,7 +41,7 @@ Setelah melalui proses pembersihan data, jumlah data yang digunakan adalah sebag
 ![dataset user](https://github.com/user-attachments/assets/2d07a607-de0f-41f1-816d-47fbd01a73ac)
 * **Users**: 166,422 records (usia antara 5-100 tahun)
 
-### [cite_start]Variabel pada Data 
+### Variabel pada Data 
 Berikut adalah penjelasan mengenai variabel-variabel utama yang digunakan dari setiap file:
 
 **1. BX-Books.csv**
@@ -50,7 +50,9 @@ Berikut adalah penjelasan mengenai variabel-variabel utama yang digunakan dari s
 * `Book-Author`: Nama penulis buku.
 * `Year-Of-Publication`: Tahun buku diterbitkan.
 * `Publisher`: Nama penerbit buku.
-* `Image-URL-S/M/L`: URL ke gambar sampul buku dalam berbagai ukuran.
+* `Image-URL-S`: URL ke gambar sampul buku ukuran S.
+* `Image-URL-M`: URL ke gambar sampul buku dalam ukuran M.
+* `Image-URL-L`: URL ke gambar sampul buku dalam ukuran L.
 
 **2. BX-Book-Ratings.csv**
 * `User-ID`: ID unik untuk setiap pengguna.
@@ -62,15 +64,8 @@ Berikut adalah penjelasan mengenai variabel-variabel utama yang digunakan dari s
 * `Location`: Lokasi (kota, provinsi, negara) dari pengguna.
 * `Age`: Usia pengguna.
 
-### [cite_start]Exploratory Data Analysis (EDA) 
+### Exploratory Data Analysis (EDA) 
 
 **Distribusi Usia Pengguna**
 Visualisasi data usia pengguna menunjukkan bahwa mayoritas pengguna berada di rentang usia 20 hingga 40 tahun, dengan puncak distribusi di sekitar usia 25 tahun.
-```python
-# Visualisasi Distribusi Usia Pengguna
-plt.figure(figsize=(10,6))
-users['Age'].dropna().astype(int).plot.hist(bins=30, edgecolor='black')
-plt.title('Distribusi Usia Pengguna')
-plt.xlabel('Usia')
-plt.ylabel('Jumlah Pengguna')
-plt.show()
+![distribusi usia ](https://github.com/user-attachments/assets/150b0c1c-ac81-4b72-aaf4-ecf4df43705c)
