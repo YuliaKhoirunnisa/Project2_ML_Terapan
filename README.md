@@ -31,9 +31,9 @@ Untuk mencapai tujuan yang telah ditentukan, diusulkan dua pendekatan solusi seb
 Dataset yang digunakan dalam proyek ini adalah **Book-Crossing Dataset** dari [Kaggle](https://www.kaggle.com/datasets/ruchi798/bookcrossing-dataset) yang terdiri dari tiga file: `BX-Books.csv`, `BX-Book-Ratings.csv`, dan `BX-Users.csv`.  Dataset ini berisi informasi mengenai buku, rating yang diberikan oleh pengguna, dan data demografis pengguna.
 
 Setelah melalui proses pembersihan data, jumlah data yang digunakan adalah sebagai berikut:
-* **Books**: 270,494 records
-  ![dataset books](https://github.com/user-attachments/assets/bddc1e27-8ca7-4874-8891-a628acaf4c27)
 
+  ![dataset books](https://github.com/user-attachments/assets/bddc1e27-8ca7-4874-8891-a628acaf4c27)
+* **Books**: 270,494 records
 
 * **Ratings**: 433,659 records (hanya rating > 0)
 * **Users**: 166,422 records (usia antara 5-100 tahun)
