@@ -32,10 +32,11 @@ Dataset yang digunakan dalam proyek ini adalah **Book-Crossing Dataset** dari [K
 
 Setelah melalui proses pembersihan data, jumlah data yang digunakan adalah sebagai berikut:
 * **Books**: 270,494 records
+  ![dataset books](https://github.com/user-attachments/assets/bddc1e27-8ca7-4874-8891-a628acaf4c27)
+
+
 * **Ratings**: 433,659 records (hanya rating > 0)
 * **Users**: 166,422 records (usia antara 5-100 tahun)
-
-[cite_start]**Sumber Dataset**: [cite: 30] Dataset ini dapat diunduh dari Kaggle, meskipun sumber aslinya berasal dari [Institut für Informatik, Universität Freiburg](http://www2.informatik.uni-freiburg.de/~cziegler/BX/).
 
 ### [cite_start]Variabel pada Data 
 Berikut adalah penjelasan mengenai variabel-variabel utama yang digunakan dari setiap file:
