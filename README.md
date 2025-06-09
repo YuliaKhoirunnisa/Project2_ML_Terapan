@@ -110,3 +110,16 @@ content_data['combined'] = content_data['combined'].fillna('')
    - Data rating dibagi menjadi 80% data latih dan 20% data uji. Ini penting untuk melatih model pada satu set data dan mengevaluasinya pada set data lain yang belum pernah dilihatnya.
    - Dataset diubah ke dalam format yang dapat dibaca oleh library `surprise` menggunakan `Reader` dan `Dataset.load_from_df()`.
 Tahapan ini sangat penting karena kualitas data yang bersih dan terstruktur akan sangat menentukan performa model yang akan dibangun.
+
+# Modeling
+### **1. Content-Based Filtering**
+Model ini dibuat untuk merekomendasikan buku berdasarkan kemiripan kontennya. 
+**- Proses:** Fitur gabungan (`combined`) dari setiap buku diubah menjadi vektor TF-IDF. Matriks TF-IDF ini merepresentasikan pentingnya setiap kata dalam dokumen (buku). Selanjutnya, model `NearestNeighbors` dilatih pada matriks ini untuk menemukan buku-buku dengan vektor terdekat (kemiripan kosinus tertinggi).
+**- Kelebihan:**  Tidak memerlukan data rating dari pengguna lain (mengatasi masalah _cold_ start untuk item baru) dan dapat memberikan rekomendasi untuk item yang spesifik/kurang populer.
+**- Kekurangan:**  Terbatas pada fitur yang ada (tidak dapat menemukan item baru yang tak terduga atau _serendipity_) dan bisa menjadi terlalu spesifik (jika pengguna menyukai satu genre, ia hanya akan direkomendasikan genre itu saja).
+
+**Hasil Rekomendasi (Top-N Recommendation)** 
+Berikut adalah hasil 10 rekomendasi teratas untuk buku "Harry Potter and the Sorcerer's Stone (Book 1)":
+![tpo N](https://github.com/user-attachments/assets/90e9711f-2655-40ac-bb7e-4ea135675643)
+
+### 2. Collaborative Filtering
