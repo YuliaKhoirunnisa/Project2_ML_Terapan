@@ -32,10 +32,11 @@ Dataset yang digunakan dalam proyek ini adalah **Book-Crossing Dataset** dari [K
 
 Setelah melalui proses pembersihan data, jumlah data yang digunakan adalah sebagai berikut:
 
-  ![dataset books](https://github.com/user-attachments/assets/bddc1e27-8ca7-4874-8891-a628acaf4c27)
+![dataset books](https://github.com/user-attachments/assets/bddc1e27-8ca7-4874-8891-a628acaf4c27)
 * **Books**: 270,494 records
-
+![dataset rating](https://github.com/user-attachments/assets/e599f1e2-d5a5-4f95-9902-ca646064ebe7)
 * **Ratings**: 433,659 records (hanya rating > 0)
+![dataset user](https://github.com/user-attachments/assets/2d07a607-de0f-41f1-816d-47fbd01a73ac)
 * **Users**: 166,422 records (usia antara 5-100 tahun)
 
 ### [cite_start]Variabel pada Data 
