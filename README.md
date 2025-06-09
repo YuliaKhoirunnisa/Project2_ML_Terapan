@@ -73,4 +73,20 @@ Berikut adalah penjelasan mengenai variabel-variabel utama yang digunakan dari s
 Visualisasi data usia pengguna menunjukkan bahwa mayoritas pengguna berada di rentang usia 20 hingga 40 tahun, dengan puncak distribusi di sekitar usia 25 tahun.
 Tentu, ini adalah kode Markdown lengkap untuk laporan Anda. Anda bisa menyalin dan menempelkannya ke dalam file .md.
 
-Insight: Karena mayoritas pengguna berada dalam rentang usia dewasa muda, rekomendasi yang dihasilkan mungkin lebih condong ke selera demografis ini.
+_Insight_: Karena mayoritas pengguna berada dalam rentang usia dewasa muda, rekomendasi yang dihasilkan mungkin lebih condong ke selera demografis ini.
+
+**10 Lokasi Pengguna Terbanyak**
+
+![lokasi pengguna](https://github.com/user-attachments/assets/599fceb5-a604-47e7-850c-2293b7ffe87f)
+
+Grafik menunjukkan bahwa pengguna terbanyak berasal dari kota-kota besar di negara berbahasa Inggris seperti London (Inggris), Sydney (Australia), dan berbagai kota di Amerika Serikat serta Kanada.
+
+_Insight_: Sebaran geografis pengguna ini mengindikasikan bahwa koleksi buku dan preferensi rating kemungkinan besar didominasi oleh buku-buku berbahasa Inggris.
+
+# Data Preparation
+Tahapan data preparation dilakukan untuk membersihkan dan menyusun data agar siap digunakan untuk modeling. Langkah-langkah yang dilakukan adalah sebagai berikut:
+1. Pembersihan Data Awal:
+- Pada data `books`, baris yang semua nilainya kosong (`NaN`) dihapus.
+- Pada data `ratings`, rating bernilai 0 (menandakan rating implisit) dihapus karena untuk model collaborative filtering ini hanya rating eksplisit (1-10) yang relevan.
+- Pada data `users`, data pengguna difilter untuk menjaga usia yang logis, yaitu antara 5 hingga 100 tahun.
+2. Penggabungan Data: DataFrame `ratings` dan `books` digabungkan (merge) berdasarkan kolom `ISBN`. Ini bertujuan agar setiap rating terhubung dengan informasi detail bukunya.
