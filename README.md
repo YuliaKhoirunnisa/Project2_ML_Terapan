@@ -120,6 +120,7 @@ Model ini dibuat untuk merekomendasikan buku berdasarkan kemiripan kontennya.
 
 **Hasil Rekomendasi (Top-N Recommendation)** 
 Berikut adalah hasil 10 rekomendasi teratas untuk buku "Harry Potter and the Sorcerer's Stone (Book 1)":
+
 ![tpo N](https://github.com/user-attachments/assets/90e9711f-2655-40ac-bb7e-4ea135675643)
 
 ### 2. Collaborative Filtering
@@ -137,6 +138,7 @@ Metrik evaluasi yang digunakan untuk mengukur kinerja model _Collaborative Filte
 
 **Formula dan Cara Kerja Metrik**
 RMSE dihitung dengan mengambil akar kuadrat dari rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual. Formulanya adalah sebagai berikut:
+
 $$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
 Di mana:
 
