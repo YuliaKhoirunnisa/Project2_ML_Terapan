@@ -142,24 +142,54 @@ Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi
 ![tpo N](https://github.com/user-attachments/assets/8b1644cf-014c-4027-874a-b94a1bd0a995)
 
 ## Evaluasi
-Metrik evaluasi yang digunakan untuk mengukur kinerja model _Collaborative Filtering_ adalah **Root Mean Squared Error (RMSE)**. Metrik ini dipilih karena sesuai dengan konteks masalah prediksi rating, di mana tujuannya adalah meminimalkan kesalahan antara rating yang diprediksi oleh model dan rating aktual yang diberikan oleh pengguna. 
+### Evaluasi Content-Based Filtering
+Untuk mengevaluasi performa model Content-Based Filtering, digunakan metrik **Precision@10** dan **NDCG@10**. 
+- **Precision@10** mengukur proporsi item yang relevan di antara 10 rekomendasi teratas yang diberikan kepada pengguna.
+- **NDCG@10** mengukur relevansi rekomendasi dengan mempertimbangkan urutan (ranking) item relevan, sehingga lebih adil untuk rekomendasi berbasis konten.
 
-**Formula dan Cara Kerja Metrik**
+**Formula Precision@K**:
+\[
+\text{Precision@K} = \frac{|\text{Recommended Items} \cap \text{Relevant Items}|}{K}
+\]
+
+**Formula NDCG@K**:
+\[
+\text{DCG@K} = \sum_{i=1}^{K} \frac{\text{rel}_i}{\log_2(i + 1)}
+\]
+\[
+\text{NDCG@K} = \frac{\text{DCG@K}}{\text{IDCG@K}}
+\]
+
+**Hasil Evaluasi**:
+- **Precision@10** = 0.00
+- **NDCG@10** = 0.00
+
+Nilai Precision@10 menunjukkan bahwa dari 10 buku yang direkomendasikan, tidak ada buku yang telah dibaca oleh pengguna dalam data historis. Ini wajar untuk model Content-Based Filtering yang bertujuan merekomendasikan buku baru berdasarkan kemiripan konten dengan buku favorit pengguna.
+
+---
+
+### Evaluasi Collaborative Filtering
+
+Metrik evaluasi yang digunakan untuk mengukur kinerja model _Collaborative Filtering_ adalah **Root Mean Squared Error (RMSE)**. Metrik ini dipilih karena sesuai dengan konteks masalah prediksi rating, di mana tujuannya adalah meminimalkan kesalahan antara rating yang diprediksi oleh model dan rating aktual yang diberikan oleh pengguna.
+
+**Formula dan Cara Kerja Metrik**:
 RMSE dihitung dengan mengambil akar kuadrat dari rata-rata selisih kuadrat antara nilai prediksi dan nilai aktual. Formulanya adalah sebagai berikut:
 
-$$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
-Di mana:
+\[
+RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}
+\]
 
-- $n$ adalah jumlah total data (rating) yang diuji.
-- $y_i$ adalah rating aktual yang diberikan oleh pengguna.
-- $\hat{y}_i$ adalah rating yang diprediksi oleh model.
+Di mana:
+- \(n\) adalah jumlah total data (rating) yang diuji.
+- \(y_i\) adalah rating aktual yang diberikan oleh pengguna.
+- \(\hat{y}_i\) adalah rating yang diprediksi oleh model.
 
 RMSE memberikan bobot yang lebih besar pada kesalahan yang lebih besar karena adanya proses pengkuadratan. Nilai RMSE yang lebih rendah menunjukkan bahwa model memiliki tingkat kesalahan prediksi yang lebih kecil, sehingga performanya dianggap lebih baik.
 
-**Hasil Evaluasi**
+**Hasil Evaluasi**:
 
 Model SVD dievaluasi pada dua skenario:
+1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6417**.
+2. **Test Set:** Saat diuji pada data uji (20% dari data), model menghasilkan **RMSE sebesar 1.2641**.
 
-1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6417.**
-Test Set: Saat diuji pada data uji (20% dari data), model menghasilkan **RMSE sebesar 1.2641.**
 Nilai RMSE pada test set yang lebih rendah (1.2641) menunjukkan bahwa model memiliki performa yang baik dalam memprediksi rating pada data yang belum pernah dilihat sebelumnya. Nilai ini mengindikasikan bahwa rata-rata kesalahan prediksi model dari rating sebenarnya adalah sekitar 1.27 poin pada skala rating 1-10.
