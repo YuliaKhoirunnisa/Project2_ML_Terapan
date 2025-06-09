@@ -149,6 +149,7 @@ Di mana:
 RMSE memberikan bobot yang lebih besar pada kesalahan yang lebih besar karena adanya proses pengkuadratan. Nilai RMSE yang lebih rendah menunjukkan bahwa model memiliki tingkat kesalahan prediksi yang lebih kecil, sehingga performanya dianggap lebih baik.
 
 **Hasil Evaluasi**
+
 Model SVD dievaluasi pada dua skenario:
 
 1. **Cross-Validation:** Menggunakan 3-fold cross-validation pada keseluruhan dataset, model menghasilkan **rata-rata RMSE sebesar 1.6424.**
