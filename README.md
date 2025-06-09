@@ -1,5 +1,7 @@
 # Laporan Proyek Machine Learning - Yulia Khoirunnisa
 ## Project Overview
+![Uploading buku.png…]()
+
 Sistem rekomendasi merupakan salah satu penerapan *machine learning* yang paling populer dan banyak ditemui dalam kehidupan sehari-hari.  Mulai dari platform *e-commerce*, layanan *streaming* musik dan film, hingga portal berita, sistem ini membantu pengguna menemukan item yang relevan di antara jutaan pilihan yang tersedia. Dalam industri perbukuan, baik toko buku daring maupun perpustakaan digital, sistem rekomendasi memegang peranan krusial dalam meningkatkan pengalaman pengguna. Dengan merekomendasikan buku yang sesuai dengan selera atau kebutuhan, pengguna dapat lebih mudah menemukan bacaan baru yang menarik, yang pada akhirnya dapat meningkatkan keterlibatan (*engagement*) dan loyalitas pengguna. 
 
 Proyek ini bertujuan untuk membangun sebuah sistem rekomendasi buku menggunakan dataset publik "Book-Crossing: User review ratings". Pentingnya proyek ini adalah untuk menerapkan dan membandingkan dua pendekatan utama dalam sistem rekomendasi, yaitu *Content-Based Filtering* dan *Collaborative Filtering*.  Dengan memahami dan mengimplementasikan kedua pendekatan ini, kita dapat melihat bagaimana masing-masing metode bekerja dalam memberikan rekomendasi yang dipersonalisasi serta menganalisis kelebihan dan kekurangannya dalam konteks data buku.
