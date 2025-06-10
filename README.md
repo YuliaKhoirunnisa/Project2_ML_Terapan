@@ -151,9 +151,11 @@ Berikut adalah 10 rekomendasi buku teratas untuk User-ID 160681 beserta prediksi
 
 ## Evaluasi
 ### Evaluasi Content-Based Filtering
-Untuk mengevaluasi performa model Content-Based Filtering, digunakan metrik **Precision@10** dan **NDCG@10**. 
+
+Untuk mengevaluasi performa model Content-Based Filtering, digunakan metrik **Precision@10**.
+
 - **Precision@10** mengukur proporsi item yang relevan di antara 10 rekomendasi teratas yang diberikan kepada pengguna.
-- **NDCG@10** mengukur relevansi rekomendasi dengan mempertimbangkan urutan (ranking) item relevan, sehingga lebih adil untuk rekomendasi berbasis konten.
+- Metrik ini sesuai untuk sistem rekomendasi karena menunjukkan seberapa akurat rekomendasi yang diberikan pada level pengguna akhir.
 
 **Formula Precision@K**:
 
@@ -161,22 +163,13 @@ $$
 \text{Precision@K} = \frac{|\text{Recommended Items} \cap \text{Relevant Items}|}{K}
 $$
 
-**Formula NDCG@K**:
-
-$$
-\text{DCG@K} = \sum_{i=1}^{K} \frac{\text{rel}_i}{\log_2(i + 1)}
-$$
-$$
-\text{NDCG@K} = \frac{\text{DCG@K}}{\text{IDCG@K}}
-$$
-
 **Hasil Evaluasi**:
 - **Precision@10** = 0.00
-- **NDCG@10** = 0.00
 
-Nilai Precision@10 menunjukkan bahwa dari 10 buku yang direkomendasikan, tidak ada buku yang telah dibaca oleh pengguna dalam data historis. Ini wajar untuk model Content-Based Filtering yang bertujuan merekomendasikan buku baru berdasarkan kemiripan konten dengan buku favorit pengguna.
+Nilai Precision@10 menunjukkan bahwa dari 10 buku yang direkomendasikan oleh model Content-Based Filtering, tidak ada yang cocok dengan daftar buku yang pernah diberi rating oleh pengguna (berdasarkan data historis). Hal ini wajar, mengingat model ini memang tidak melihat histori pengguna, melainkan hanya mencocokkan konten dari satu buku dengan buku lainnya.
 
----
+**Catatan**:  
+Metrik **NDCG@10** tidak dihitung dalam proyek ini karena tidak diimplementasikan di dalam notebook. Namun, secara teoritis, metrik tersebut bisa digunakan untuk mengevaluasi sistem rekomendasi berbasis ranking di masa depan.
 
 ### Evaluasi Collaborative Filtering
 
